@@ -4,7 +4,7 @@ const bodyParser=require('body-parser');
 const jwt=require('jsonwebtoken');
 const process=require('process');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7000;
 
 var app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -72,7 +72,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
 
     app.get("/show",verifyToken,(req,res)=>{
      
-       db.collection("myCollection").find({}).then((result)=> {
+       db.collection("myCollection").find({},(result)=>{
          res.send(result);
        });
 
