@@ -72,9 +72,9 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
     //Show
     app.get("/show",verifyToken,(req,res)=>{
      
-       db.collection("myCollection").find({},(err,result)=>{
+       db.collection("myCollection").find({}),toArray((err,result)=>{
          if(err) res.send("Error Reading");
-         res.json(result);
+         res.send(result);
        });
 
 
