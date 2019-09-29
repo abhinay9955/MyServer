@@ -4,7 +4,7 @@ const bodyParser=require('body-parser');
 const jwt=require('jsonwebtoken');
 const process=require('process');
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 7000;
 
 var app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,18 +52,20 @@ var sha512 = function(password, salt){
 
 const MongoClient= require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb://localhost:27017',(err,client)=>{
+MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/test?retryWrites=true&w=majority',(err,client)=>{
   if(err)
     {
-
+         console.log("No Database");
     }
   else
    {
+      console.log("connected...");
       const db=client.db("mydatabase");
-      //Home
+
+     //Home
       app.get("/",verifyToken,(req,res)=>
     {
-       res.send({i:1});
+      
     });
     
     //Test
