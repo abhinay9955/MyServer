@@ -68,7 +68,16 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
     app.get("/test",(req,res)=>{
       res.send("Waah Modiji waah");
     }); 
+     
 
+    app.get("/show",verifyToken,(req,res)=>{
+     
+       db.collection("myCollection").find({}).then((result)=> {
+         res.send(result);
+       });
+
+
+    });
 
     //Register
     app.post("/register",(req,res)=>{
