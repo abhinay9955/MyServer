@@ -4,7 +4,7 @@ const bodyParser=require('body-parser');
 const jwt=require('jsonwebtoken');
 const process=require('process');
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 3000;
 
 var app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -62,11 +62,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
       console.log("connected...");
       const db=client.db("mydatabase");
 
-     //Home
-      app.get("/",verifyToken,(req,res)=>
-    {
-      
-    });
+     
     
     //Test
     app.get("/test",(req,res)=>{
@@ -80,7 +76,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
       var salt=genRandomString('16');
       var hashedPass=sha512(user.password,salt);
       
-      db.collection("myCollection").count({emai:user.email}).then((number)=>{
+      db.collection("myCollection").count({emai:user.email},(number)=>{
         if(number==0)
         {
           db.collection("myCollection").insertOne({name:user.name,password:hashedPass,email:user.email});
