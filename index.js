@@ -4,7 +4,7 @@ const bodyParser=require('body-parser');
 const jwt=require('jsonwebtoken');
 
 
-const port =  7000;
+const port =  process.env.PORT || 8000;
 
 var app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -131,7 +131,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
       });
     });
 
-    app.listen(8000);
+    app.listen(port);
 
   }
 });
