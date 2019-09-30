@@ -2,9 +2,9 @@ const express=require('express');
 const crypto=require('crypto');
 const bodyParser=require('body-parser');
 const jwt=require('jsonwebtoken');
-const process=require('process');
 
-const port = process.env.PORT ||  7000;
+
+const port =  7000;
 
 var app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -72,7 +72,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
     //Show
     app.get("/show",verifyToken,(req,res)=>{
      
-       db.collection("myCollection").find({}),toArray((err,result)=>{
+       db.collection("myCollection").find({},{projection:{_id:0,password:0,name:1,email:1}}).toArray((err,result)=>{
          if(err) res.send("Error Reading");
          res.send(result);
        });
@@ -90,12 +90,12 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
         if(number==0)
         {
           db.collection("myCollection").insertOne({name:user.name,password:hashedPass,email:user.email});
-          res.json({message:"Successful"});
+          res.send("successfull");
                  
         }
         else
         {
-          res.json({message:"Email Already Exists"});
+          res.send("Email Already Exists");
         }
       });
     
@@ -131,7 +131,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
       });
     });
 
-    app.listen(port);
+    app.listen(8000);
 
   }
 });
