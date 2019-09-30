@@ -86,7 +86,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
       var salt=genRandomString('16');
       var hashedPass=sha512(user.password,salt);
       
-      db.collection("myCollection").count({emai:user.email},(err,number)=>{
+      db.collection("myCollection").count({email:user.email},(err,number)=>{
         if(err)
         res.json({message:"ERROR_REGISTERING_USER"});
         if(number==0)
