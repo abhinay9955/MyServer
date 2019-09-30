@@ -90,12 +90,12 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
         if(number==0)
         {
           db.collection("myCollection").insertOne({name:user.name,password:hashedPass,email:user.email});
-          res.send("successfull");
+          res.json({message:"SUCCESSFUL"});
                  
         }
         else
         {
-          res.send("Email Already Exists");
+          res.json({message:"EMAIL_ALREADY_EXISTS"});
         }
       });
     
