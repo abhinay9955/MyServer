@@ -118,11 +118,11 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
                if(newHash.passwordHash===user.password.passwordHash)
                {
                    var token= jwt.sign({email:user.email,name:user.name},'Abhinay');
-                   res.send(token);
+                   res.json({message:"successful",token:token});
                   }
                else
                {
-                 res.send("Incorrect Password");
+                 res.json({message:"Incorrect Password"});
                }
              }
 
