@@ -109,7 +109,7 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
 
              if(user==null)
              {
-                res.json({message:"User not existed"});
+                res.json({message:"USER_NOT_EXISTED"});
              }
              else
              {
@@ -118,11 +118,11 @@ MongoClient.connect('mongodb+srv://admin:bittu599@cluster0-l6gbk.mongodb.net/tes
                if(newHash.passwordHash===user.password.passwordHash)
                {
                    var token= jwt.sign({email:user.email,name:user.name},'Abhinay');
-                   res.json({message:"successful",token:token});
+                   res.json({message:"SUCCESSFUL",token:token});
                   }
                else
                {
-                 res.json({message:"Incorrect Password"});
+                 res.json({message:"INCORRECT_PASSWORD"});
                }
              }
 
